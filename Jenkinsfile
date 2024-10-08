@@ -12,7 +12,7 @@ pipeline {
                 script{
                     dir("terraform")
                     {
-                        git 'https://github.com/sdineshgandhi/aws_terraform.git'
+                        git branch: 'main', url: 'https://github.com/sdineshgandhi/aws_terraform.git'
                     }
                       }
                   }
