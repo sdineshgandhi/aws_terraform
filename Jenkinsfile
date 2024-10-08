@@ -20,16 +20,19 @@ pipeline {
 
         stage('terraform plan') {
             steps {
+                withTerraform(version: 'Terraform_1.0.10') {
                 sh 'cd terraform; terraform init'
                 sh 'cd terraform; terraform plan -out tfplan'
                 sh 'cd terraform; terraform show -no-color tfplan > tfplan.txt'
+                }
             }
         }
 
         stage('Terraform Apply') {
             steps {
-                
+                withTerraform(version: 'Terraform_1.0.10'){
                 sh 'cd terraform; terraform apply -auto-approve'
+                }
             }
         }
     }
